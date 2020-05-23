@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Link = ({ callback }) => (
   <a
@@ -11,5 +12,9 @@ const Link = ({ callback }) => (
     Learn React (get products)
   </a>
 );
+
+Link.propTypes = {
+  callback: PropTypes.func.isRequired,
+};
 
 export default Link;

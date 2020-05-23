@@ -1,0 +1,21 @@
+{
+  "name": "react-zzaria-hooks",
+  "version": "1.0.0",
+  "description": "Project to studying react concepts using reac-hooks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lerna": "./node_modules/.bin/lerna"
+  },
+  "keywords": [
+    "Study",
+    "React",
+    "React-Hooks"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "lerna": "^3.21.0"
+  }
+}

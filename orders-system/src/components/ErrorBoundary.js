@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -6,7 +7,7 @@ class ErrorBoundary extends React.Component {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     // Atualiza o state para que a próxima renderização mostre a UI alternativa.
     return { hasError: true };
   }
@@ -17,13 +18,23 @@ class ErrorBoundary extends React.Component {
   // }
 
   render() {
-    if (this.state.hasError) {
+    const { hasError } = this.state;
+    // eslint-disable-next-line react/prop-types
+    const { children } = this.props;
+
+    if (hasError) {
       // Você pode renderizar qualquer UI alternativa
       return <h1>Algo deu errado.</h1>;
     }
 
-    return this.props.children;
+    return children;
   }
 }
+
+ErrorBoundary.propTypes = {
+  props: PropTypes.shape({
+    children: PropTypes.node,
+  }).isRequired,
+};
 
 export default ErrorBoundary;
