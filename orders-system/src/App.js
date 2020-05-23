@@ -2,13 +2,12 @@ import './App.css';
 
 import React, { Suspense, useState } from 'react';
 
-const Link = React.lazy(() => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(import('./components/Link'));
-    }, 2000);
-  });
-});
+const Link = React.lazy(() => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve(import('./components/Link'));
+  }, 2000);
+}));
+
 const Image = React.lazy(() => import('./components/Image'));
 const Content = React.lazy(() => import('./components/Content'));
 
