@@ -3,7 +3,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 import App from './App';
-import ErrorBoundary from 'components/ErrorBoundary';
+import ErrorBoundary from './components/ErrorBoundary';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
