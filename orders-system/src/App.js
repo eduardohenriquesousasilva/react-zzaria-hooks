@@ -16,7 +16,6 @@ function App() {
 
   const handleClick = (e) => {
     e.preventDefault();
-
     setProducts({});
   }
 
