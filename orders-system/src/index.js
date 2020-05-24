@@ -1,19 +1,15 @@
-import './index.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import * as serviceWorker from './serviceWorker';
 
 import App from './App';
-import ErrorBoundary from './components/ErrorBoundary';
-import React from 'react';
-import ReactDOM from 'react-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ErrorBoundary>
-      <App />
-    </ErrorBoundary>
+    <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
