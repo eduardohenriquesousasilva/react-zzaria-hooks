@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
-import { Grid, Button } from '@material-ui/core';
+import {
+  Grid,
+  Button as MaterialButton,
+} from '@material-ui/core';
+
 // Importing logo as ReactComponent
 // (this way the tag SVG will be load and put in HTML)
 import { ReactComponent as ReactzzariaLogo } from 'assets/images/logo.svg';
 
 export const PageContainer = styled.div`
-  padding: 40px 20px;
+  padding: 40px;
 `;
 
 export const PageGrid = styled(Grid).attrs({
@@ -24,14 +28,14 @@ export const Logo = styled(ReactzzariaLogo)`
   width: 100%;
 `;
 
-export const GitHubButtonGrid = styled(Grid).attrs({
+export const AuthButtonsGrid = styled(Grid).attrs({
   container: true,
   justify: 'center',
   item: true,
   xs: 12,
 })``;
 
-export const GitHubButton = styled(Button).attrs({
+export const Button = styled(MaterialButton).attrs({
   variant: 'contained',
   fullWidth: true,
 })`
@@ -39,7 +43,7 @@ export const GitHubButton = styled(Button).attrs({
     Using && the styled component added two times the class
      name, this way is easier to override css rules
   */
-  && {
+ && {
     font-size: 20px;
     padding: 15px;
     text-transform: none;
