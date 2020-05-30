@@ -1,5 +1,5 @@
 import React from 'react';
-import { CssBaseline, Container } from '@material-ui/core';
+import { CssBaseline } from '@material-ui/core';
 
 import Pages from 'routes/index';
 
@@ -9,9 +9,7 @@ import Pages from 'routes/index';
 const App = () => (
   <>
     <CssBaseline />
-    <Container>
-      <Pages />
-    </Container>
+    <Pages />
   </>
 );
 
