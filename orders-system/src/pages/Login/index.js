@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import * as Firebase from 'services/Firebase';
 
 import * as S from './style';
@@ -18,19 +18,19 @@ const Login = () => {
   /**
    * Login method applyng scope Login page
    */
-  const login = () => {
+  const login = useCallback(() => {
     Firebase.login();
-  };
+  }, []);
 
   /**
    * Logout method applyng scope Login page
    */
-  const logout = () => {
+  const logout = useCallback(() => {
     Firebase.logout()
       .then(() => {
         setUserInfo(Firebase.formatUserInfo());
       });
-  };
+  }, [setUserInfo]);
 
   return (
     <S.PageContainer>
