@@ -1,14 +1,16 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { LinearProgress } from '@material-ui/core';
 
 import Routes from 'routes/routes';
 
 /**
- * Componente com as páginas disponíveis na aplicação
+ * Route page component with all routes available
+ * in the application
  */
 const Pages = () => (
   <BrowserRouter>
-    <Suspense fallback={<h1>Loading...</h1>}>
+    <Suspense fallback={<LinearProgress />}>
       <Switch>
         { Routes.map(({
           path,
