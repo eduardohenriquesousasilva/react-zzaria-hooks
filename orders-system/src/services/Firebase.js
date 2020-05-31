@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 import 'firebase/auth';
 import 'firebase/analytics';
 import firebase from 'firebase/app';
@@ -36,18 +34,21 @@ const makeProvider = () => {
  * User data format to persist default properties
  *
  * @param {Object} data
+ * @param {boolean} checkedLogged
  */
-export const formatUserInfo = (data = null) => {
+export const formatUserInfo = (data = null, checkedLogged = false) => {
   const isLogged = !(data === null);
 
   if (!isLogged) {
     return {
+      checkedLogged,
       isLogged,
       user: null,
     };
   }
 
   return {
+    checkedLogged,
     isLogged,
     user: {
       uid: data.uid,
@@ -69,11 +70,10 @@ export const retrieveUser = (callbackHandleLoggedUser) => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       return callbackHandleLoggedUser(
-        formatUserInfo(user.providerData[0]),
+        formatUserInfo(user.providerData[0], true),
       );
     }
-
-    return callbackHandleLoggedUser(formatUserInfo());
+    return callbackHandleLoggedUser(formatUserInfo(null, true));
   });
 };
 
@@ -92,21 +92,3 @@ export const login = () => {
  * @return {Promise}
  */
 export const logout = () => firebase.auth().signOut();
-
-/**
- * Custom Hook to manager logged user,
- * this hook can be used in many other pieces
- * of the application to retrieve logged user
- */
-export const useFirebase = () => {
-  const [userInfo, setUserInfo] = useState({
-    isLogged: false,
-    user: null,
-  });
-
-  useEffect(() => {
-    retrieveUser(setUserInfo);
-  }, []);
-
-  return [userInfo, setUserInfo];
-};

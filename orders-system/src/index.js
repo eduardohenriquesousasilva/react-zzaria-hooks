@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import * as serviceWorker from './serviceWorker';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import App from './App';
 import Auth from './stories/Auth';
+import * as serviceWorker from './serviceWorker';
 
 // The application is rendered here, the application
 // needs to retrieve authenticated user, so here the
@@ -16,7 +16,9 @@ import Auth from './stories/Auth';
 ReactDOM.render(
   <React.StrictMode>
     <Auth>
-      <App />
+      <BrowserRouter>
+        <Route component={App} />
+      </BrowserRouter>
     </Auth>
   </React.StrictMode>,
   document.getElementById('root'),

@@ -1,4 +1,9 @@
-import React, { createContext, useCallback } from 'react';
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 import Proptypes from 'prop-types';
 import * as Firebase from 'services/Firebase';
 
@@ -13,8 +18,15 @@ export const AuthContext = createContext();
  * that are inside his scope
  */
 const Auth = ({ children }) => {
-  const [userInfo, setUserInfo] = Firebase.useFirebase(null);
-  const { isLogged, user } = userInfo;
+  const [userInfo, setUserInfo] = useState(Firebase.formatUserInfo());
+  const { checkedLogged, isLogged, user } = userInfo;
+
+  /**
+   * Retrive logged user
+   */
+  useEffect(() => {
+    Firebase.retrieveUser(setUserInfo);
+  }, []);
 
   /**
    * Login method applyng scope Login page
@@ -38,10 +50,11 @@ const Auth = ({ children }) => {
    * by Auth
    */
   const providers = {
-    isLogged,
-    user,
     login,
     logout,
+    user,
+    isLogged,
+    checkedLogged,
   };
 
   return (
