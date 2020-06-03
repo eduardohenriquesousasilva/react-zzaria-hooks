@@ -9,16 +9,28 @@ import { AuthContext } from 'stories/Auth';
 
 import * as S from './style';
 
+/**
+ * Component Header
+ */
 const Header = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const anchorButtonUser = useRef(null);
 
+  /**
+   * User data from context
+   */
   const { user, logout } = useContext(AuthContext);
 
+  /**
+   * Handle the show/hide menu
+   */
   const handleOpenMenu = () => {
     setShowUserMenu(!showUserMenu);
   };
 
+  /**
+   * Handle dispatched on close menu
+   */
   const handleClose = () => {
     setShowUserMenu(!showUserMenu);
   };

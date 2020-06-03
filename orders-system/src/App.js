@@ -1,5 +1,6 @@
 import PropType from 'prop-types';
 import React, { useContext } from 'react';
+import { hot } from 'react-hot-loader/root'
 import { Redirect } from 'react-router-dom';
 import { CssBaseline, LinearProgress } from '@material-ui/core';
 
@@ -50,4 +51,6 @@ App.propTypes = {
   }).isRequired,
 };
 
-export default App;
+export default (process.env.NODE_ENV === 'development')
+  ? hot(App)
+  : App;
