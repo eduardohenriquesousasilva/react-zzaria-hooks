@@ -4,7 +4,7 @@ import Pizza from 'components/Pizza';
 import { AuthContext } from 'stories/Auth';
 import pizzaSizes from 'services/Pizzas';
 import Content from 'templates/pages/Content';
-import { userFirstName } from 'presenters/User';
+import { firstName, singularOrPlural } from 'helpers/formatter';
 import DefaultPageLayout from 'templates/pages/Default';
 
 import * as S from './style';
@@ -15,11 +15,9 @@ import * as S from './style';
 const Main = () => {
   const { user } = useContext(AuthContext);
 
-  console.log('pizzaSizes: ', pizzaSizes);
-
   return (
     <DefaultPageLayout>
-      <Content title={`O que vai ser hoje ${userFirstName(user.name)}? :)`}>
+      <Content title={`O que vai ser hoje ${firstName(user.name)}? :)`}>
         <S.ContainerPizzas>
           <S.TitlePizzas>
             Escolha o tamanho da pizza
@@ -37,7 +35,10 @@ const Main = () => {
                   <Pizza size={size} />
                   <S.Divider />
                   <S.SizeName>{ name }</S.SizeName>
-                  <S.SizeSlaces>{ slices } fatiras, { flavours } Sabores</S.SizeSlaces>
+                  <S.SizeSlaces>
+                    { slices } { singularOrPlural(slices, 'fatia', 'fatias')}, {' '}
+                    { flavours } { singularOrPlural(flavours, 'sabor', 'sabores') }
+                  </S.SizeSlaces>
                 </S.PaperSizeDetails>
               </S.GridPizzaSize>
             ))}

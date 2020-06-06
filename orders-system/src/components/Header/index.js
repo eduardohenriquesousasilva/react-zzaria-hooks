@@ -6,7 +6,7 @@ import {
   MenuItem,
 } from '@material-ui/core';
 import { AuthContext } from 'stories/Auth';
-import { userFirstName } from 'presenters/User';
+import { firstName } from 'helpers/formatter';
 
 import * as S from './style';
 
@@ -43,7 +43,7 @@ const Header = () => {
           <S.Logo />
         </S.LogContainer>
 
-        <Typography>Olá {userFirstName(user.name)} =)</Typography>
+        <Typography>Olá {firstName(user.name)} =)</Typography>
 
         <S.UserButton ref={anchorButtonUser} onClick={handleOpenMenu}>
           <S.UserIcon />
