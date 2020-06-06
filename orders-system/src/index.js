@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { CssBaseline, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 import App from './App';
 import Auth from './stories/Auth';
 import * as serviceWorker from './serviceWorker';
+
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
+});
 
 // The application is rendered here, the application
 // needs to retrieve authenticated user, so here the
@@ -15,11 +22,14 @@ import * as serviceWorker from './serviceWorker';
 // component inside app Auth component
 ReactDOM.render(
   <React.StrictMode>
-    <Auth>
-      <BrowserRouter>
-        <Route component={App} />
-      </BrowserRouter>
-    </Auth>
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <Auth>
+        <BrowserRouter>
+          <Route component={App} />
+        </BrowserRouter>
+      </Auth>
+    </MuiThemeProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

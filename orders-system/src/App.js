@@ -1,8 +1,8 @@
 import PropType from 'prop-types';
 import React, { useContext } from 'react';
-import { hot } from 'react-hot-loader/root'
+import { hot } from 'react-hot-loader/root';
 import { Redirect } from 'react-router-dom';
-import { CssBaseline, LinearProgress } from '@material-ui/core';
+import { LinearProgress } from '@material-ui/core';
 
 import Pages from 'routes/index';
 import { AuthContext } from 'stories/Auth';
@@ -12,10 +12,6 @@ import { AuthContext } from 'stories/Auth';
  */
 const App = ({ location }) => {
   const { checkedLogged, isLogged } = useContext(AuthContext);
-  // TODO Remove this variable when component
-  // logout was implemented
-  const { logout } = useContext(AuthContext);
-  window.logout = logout;
 
   // Return loading component while verify
   // if user is logged
@@ -37,7 +33,6 @@ const App = ({ location }) => {
 
   return (
     <>
-      <CssBaseline />
       <Pages />
     </>
   );
