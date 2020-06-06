@@ -14,6 +14,7 @@ export const WrapperTitle = styled(Grid).attrs({
 
 export const Title = styled(Typography).attrs({
   variant: 'h4',
+  align: 'center',
 })``;
 
 export const WrapperContent = styled(Grid).attrs({

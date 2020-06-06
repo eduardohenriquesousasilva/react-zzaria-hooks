@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
+import Content from 'templates/pages/Content';
 
 /**
  * Base Pages
@@ -16,7 +17,7 @@ const Default = ({ children }) => (
 );
 
 Default.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.instanceOf(Content).isRequired,
 };
 
 export default Default;

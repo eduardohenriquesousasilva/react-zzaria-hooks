@@ -7,7 +7,7 @@ import * as S from './style';
  * Base Page Content
  * Structure to composite the page's content
  */
-const PageContent = ({ title, children }) => (
+const Content = ({ title, children }) => (
   <S.Container>
     <S.WrapperTitle>
       <S.Title>{ title }</S.Title>
@@ -18,13 +18,13 @@ const PageContent = ({ title, children }) => (
   </S.Container>
 );
 
-PageContent.defaultProps = {
+Content.defaultProps = {
   title: 'Some Title',
 };
 
-PageContent.propTypes = {
+Content.propTypes = {
   title: PropTypes.string,
   children: PropTypes.element.isRequired,
 };
 
-export default PageContent;
+export default Content;
