@@ -1,4 +1,4 @@
-const PIZZA_SIZES = [
+const pizzaSizes = [
   {
     id: 1,
     name: 'Pequena',
@@ -22,4 +22,4 @@ const PIZZA_SIZES = [
   },
 ];
 
-export default PIZZA_SIZES;
+export default pizzaSizes;

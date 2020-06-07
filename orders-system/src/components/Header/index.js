@@ -5,7 +5,7 @@ import {
   Menu,
   MenuItem,
 } from '@material-ui/core';
-import { AuthContext } from 'stories/Auth';
+import { AuthContext } from 'contexts/Auth';
 import { firstName } from 'helpers/formatter';
 
 import * as S from './style';
