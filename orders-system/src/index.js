@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { CssBaseline, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 import App from './App';
-import Auth from './stories/Auth';
+import Auth from './contexts/Auth';
 import * as serviceWorker from './serviceWorker';
 
 const theme = createMuiTheme({

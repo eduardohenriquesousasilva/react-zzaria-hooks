@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { LinearProgress } from '@material-ui/core';
 
 import Pages from 'routes/index';
-import { AuthContext } from 'stories/Auth';
+import { AuthContext } from 'contexts/Auth';
 
 /**
  * Base component application
