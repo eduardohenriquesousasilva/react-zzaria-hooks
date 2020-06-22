@@ -4,12 +4,12 @@ import PropType from 'prop-types';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 
-import { H4 } from 'UI/Title';
-import Divider from 'UI/Divider';
-import CardLink from 'UI/CardLink';
+import { H4 } from 'components/Title';
+import Divider from 'components/Divider';
+import CardLink from 'components/CardLink';
 import { HOME } from 'routes/index';
-import PizzasGrid from 'UI/PizzasGrid';
-import HeaderContent from 'UI/HeaderContent';
+import PizzasGrid from 'components/PizzasGrid';
+import HeaderContent from 'components/HeaderContent';
 import singularOrPlural from 'helpers/formatter';
 import pizzasFlavors from 'faker-data/pizzas-flavors';
 import { Card, Grid, Typography } from '@material-ui/core';

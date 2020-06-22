@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Header from 'UI/Header';
+import Header from 'components/Header';
 import { withStyles } from '@material-ui/core';
 import { HOME, CHOOSE_PIZZA_FLAVOURS } from 'routes/index';
 

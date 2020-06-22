@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import Divider from 'UI/Divider';
-import { H3, H4 } from 'UI/Title';
-import CardLink from 'UI/CardLink';
-import PizzasGrid from 'UI/PizzasGrid';
+import Divider from 'components/Divider';
+import { H3, H4 } from 'components/Title';
+import CardLink from 'components/CardLink';
+import PizzasGrid from 'components/PizzasGrid';
 import { AuthContext } from 'contexts/Auth';
 import pizzaSizes from 'faker-data/pizzas-sizes';
 import singularOrPlural from 'helpers/formatter';
