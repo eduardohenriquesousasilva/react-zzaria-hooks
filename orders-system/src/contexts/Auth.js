@@ -1,71 +1,53 @@
-import React, {
-  createContext,
-  useState,
-  useEffect,
-  useCallback,
-} from 'react';
-import Proptypes from 'prop-types';
-import * as Firebase from 'services/Firebase';
+import React, { createContext, useCallback, useState } from 'react';
+import PropType from 'prop-types';
+
+import firebase from 'services/Firebase';
 
 export const AuthContext = createContext();
 
-/**
- * Auth Component
- *
- * This component has the authentication method as
- * login and logout, it is responsible too to manager
- * logged user and share this state to other components
- * that are inside his scope
- */
-const Auth = ({ children }) => {
-  const [userInfo, setUserInfo] = useState(Firebase.formatUserInfo());
-  const { checkedLogged, isLogged, user } = userInfo;
+function Auth({ children }) {
+  const [userInfo, setUserInfo] = useState({
+    isUserLoggedIn: false,
+    user: null,
+  });
 
   /**
-   * Retrive logged user
-   */
-  useEffect(() => {
-    Firebase.retrieveUser(setUserInfo);
-  }, []);
-
-  /**
-   * Login method applyng scope Login page
+   * Função para o login do usuário
    */
   const login = useCallback(() => {
-    Firebase.login();
+    const provider = new firebase.auth.GithubAuthProvider();
+    provider.addScope('read:user');
+
+    firebase.auth().signInWithRedirect(provider);
   }, []);
 
   /**
-   * Logout method applyng scope Login page
+   * Função para o logout do usuário
    */
   const logout = useCallback(() => {
-    Firebase.logout()
-      .then(() => {
-        setUserInfo(Firebase.formatUserInfo());
+    firebase.auth().signOut().then(() => {
+      setUserInfo({
+        isUserLoggedIn: false,
+        user: null,
       });
-  }, [setUserInfo]);
-
-  /**
-   * Variables and methods that will provide
-   * by Auth
-   */
-  const providers = {
-    login,
-    logout,
-    user,
-    isLogged,
-    checkedLogged,
-  };
+    });
+  }, []);
 
   return (
-    <AuthContext.Provider value={providers}>
-      {children}
+    <AuthContext.Provider value={{
+      login,
+      logout,
+      userInfo,
+      setUserInfo,
+    }}
+    >
+      { children }
     </AuthContext.Provider>
   );
-};
+}
 
 Auth.propTypes = {
-  children: Proptypes.node.isRequired,
+  children: PropType.node.isRequired,
 };
 
 export default Auth;

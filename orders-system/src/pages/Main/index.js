@@ -1,38 +1,49 @@
-import React, { useContext } from 'react';
+import React, { Suspense } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import styled from 'styled-components';
 
-import pizzaSizes from 'faker-data/pizzas';
-import { AuthContext } from 'contexts/Auth';
-import Content from 'templates/pages/Content';
-import { firstName } from 'helpers/formatter';
-import DefaultPageLayout from 'templates/pages/Default';
-import PizzaSizeDetails from 'components/PizzaSizeDetails';
+import Header from 'components/Header';
+import { withStyles } from '@material-ui/core';
+import { HOME, CHOOSE_PIZZA_FLAVOURS } from 'routes/index';
 
-import * as S from './style';
 
-/**
- * Página Inicial
- */
-const Main = () => {
-  const { user } = useContext(AuthContext);
+const ChoosePizzaSize = React.lazy(() => import('pages/ChoosePizzaSize'));
+const ChoosePizzaFlavors = React.lazy(() => import('pages/ChoosePizzaFlavors'));
 
-  return (
-    <DefaultPageLayout>
-      <Content title={`O que vai ser hoje ${firstName(user.name)}? :)`}>
-        <S.ContainerPizzas>
-          <S.TitlePizzas>
-            Escolha o tamanho da pizza
-          </S.TitlePizzas>
-          <S.ContainerPizzaSizes>
-            { pizzaSizes.map((pizzaSize) => (
-              <S.GridPizzaSize key={pizzaSize.id}>
-                <PizzaSizeDetails details={pizzaSize} />
-              </S.GridPizzaSize>
-            ))}
-          </S.ContainerPizzaSizes>
-        </S.ContainerPizzas>
-      </Content>
-    </DefaultPageLayout>
-  );
-};
+const Main = () => (
+  <>
+    <Header />
+
+    <Spacer />
+
+    <Content>
+      <Suspense fallback="Loading...">
+        <Switch>
+          <Route
+            path={HOME}
+            exact
+            component={ChoosePizzaSize}
+          />
+          <Route
+            path={CHOOSE_PIZZA_FLAVOURS}
+            component={ChoosePizzaFlavors}
+          />
+        </Switch>
+      </Suspense>
+    </Content>
+  </>
+);
+
+const Content = styled.main`
+  padding: 20px;
+`;
+
+const style = (theme) => ({
+  main: theme.mixins.toolbar,
+});
+
+const Spacer = withStyles(style)(({ classes }) => (
+  <div className={classes.main} />
+));
 
 export default Main;

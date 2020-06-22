@@ -1,64 +1,76 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
+
 import {
   AppBar,
-  Typography,
+  IconButton,
   Menu,
   MenuItem,
+  Toolbar as MaterialToolbar,
+  Typography,
 } from '@material-ui/core';
 import { AuthContext } from 'contexts/Auth';
-import { firstName } from 'helpers/formatter';
+import { AccountCircle } from '@material-ui/icons';
+import { ReactComponent as MainLogo } from 'assets/images/logo.svg';
 
-import * as S from './style';
-
-/**
- * Component Header
- */
 const Header = () => {
-  const [showUserMenu, setShowUserMenu] = useState(false);
-  const anchorButtonUser = useRef(null);
+  const [anchorElement, setAnchorElement] = useState(null);
+  const { userInfo, logout } = useContext(AuthContext);
 
-  /**
-   * User data from context
-   */
-  const { user, logout } = useContext(AuthContext);
-
-  /**
-   * Handle the show/hide menu
-   */
-  const handleOpenMenu = () => {
-    setShowUserMenu(!showUserMenu);
+  const handleOpenMenu = (e) => {
+    setAnchorElement(e.target);
   };
 
-  /**
-   * Handle dispatched on close menu
-   */
   const handleClose = () => {
-    setShowUserMenu(!showUserMenu);
+    setAnchorElement(null);
   };
 
   return (
     <AppBar>
-      <S.HeaderToolbar>
-        <S.LogContainer>
-          <S.Logo />
-        </S.LogContainer>
+      <Toolbar>
+        <LogoContainer>
+          <Logo />
+        </LogoContainer>
 
-        <Typography>Olá {firstName(user.name)} =)</Typography>
+        <Typography color="inherit">
+          Olá {userInfo.user.firstName} =)
+        </Typography>
 
-        <S.UserButton ref={anchorButtonUser} onClick={handleOpenMenu}>
-          <S.UserIcon />
-        </S.UserButton>
+        <IconButton color="inherit" onClick={handleOpenMenu}>
+          <AccountCircle />
+        </IconButton>
 
         <Menu
-          open={showUserMenu}
+          open={Boolean(anchorElement)}
           onClose={handleClose}
-          anchorEl={anchorButtonUser.current}
+          anchorEl={anchorElement}
         >
           <MenuItem onClick={logout}>Sair</MenuItem>
         </Menu>
-      </S.HeaderToolbar>
+      </Toolbar>
     </AppBar>
   );
 };
+
+const Toolbar = styled(MaterialToolbar)`
+  margin: 0 auto;
+  max-width: 960px;
+  width: 100%;
+`;
+
+const LogoContainer = styled.div`
+  flex-grow: 1;
+`;
+
+const Logo = styled(MainLogo)`
+  height: 50px;
+  width: 200px;
+  & path {
+    fill: #fff;
+  }
+  & line {
+    stroke: #fff;
+  }
+`;
 
 export default Header;

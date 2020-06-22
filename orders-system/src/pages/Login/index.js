@@ -1,33 +1,48 @@
 import React, { useContext } from 'react';
-import { AuthContext } from 'stories/Auth';
-import * as S from './style';
+import styled from 'styled-components';
 
+import { AuthContext } from 'contexts/Auth';
+import { Button, Grid } from '@material-ui/core';
+import { ReactComponent as MainLogo } from 'assets/images/logo.svg';
 
-/**
- * Login Page
- *
- * On this page, I'm testing put all interface variants in
- * the style file, it includes the Material's UI attributes.
- * This way the component will be more clear with only
- * specific attributes
- */
-const Login = () => {
+function Login() {
   const { login } = useContext(AuthContext);
 
   return (
-    <S.PageContainer>
-      <S.PageGrid>
-        <S.LogoGrid>
-          <S.Logo />
-        </S.LogoGrid>
-        <S.AuthButtonsGrid>
-          <S.Button onClick={login}>
+    <Container>
+      <Grid container justify="center" spacing={5}>
+        <Grid item>
+          <Logo />
+        </Grid>
+
+        <Grid item xs={12} container justify="center">
+          <GitHubButton onClick={login}>
             Entrar com GitHub
-          </S.Button>
-        </S.AuthButtonsGrid>
-      </S.PageGrid>
-    </S.PageContainer>
+          </GitHubButton>
+        </Grid>
+      </Grid>
+    </Container>
   );
-};
+}
+
+const Container = styled.div`
+  padding: 20px;
+`;
+
+const Logo = styled(MainLogo)`
+  width: 100%;
+`;
+
+const GitHubButton = styled(Button).attrs({
+  variant: 'contained',
+  fullWidth: true,
+})`
+  && {
+    font-size: 25px;
+    max-width: 480px;
+    padding: 15px;
+    text-transform: none;
+  }
+`;
 
 export default Login;
