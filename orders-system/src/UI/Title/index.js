@@ -13,11 +13,11 @@ export const H3 = ({ children }) => <Title variant="h3"> { children } </Title>;
 export const H4 = ({ children }) => <Title variant="h4"> { children } </Title>;
 
 H3.propTypes = {
-  children: PropType.element.isRequired,
+  children: PropType.node.isRequired,
 };
 
 H4.propTypes = {
-  children: PropType.element.isRequired,
+  children: PropType.node.isRequired,
 };
 
 export default Title;

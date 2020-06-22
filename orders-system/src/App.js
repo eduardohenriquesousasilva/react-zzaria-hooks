@@ -25,11 +25,13 @@ function App({ location }) {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
+      console.log('user: ', user);
       setUserInfo({
         isUserLoggedIn: !!user,
         user: user && {
           ...user,
-          firstName: user.displayName.split(' ')[0],
+          // firstName: user.displayName.split(' ')[0],
+          firstName: 'Eduardo',
         },
       });
       setDidCheckUserIn(true);

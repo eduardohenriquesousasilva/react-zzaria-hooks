@@ -56,8 +56,8 @@ const ChoosePizzaFlavors = ({ location }) => {
 ChoosePizzaFlavors.propTypes = {
   location: PropType.shape({
     state: PropType.shape({
-      id: PropType.number.isRequired,
-      flavors: PropType.number.isRequired,
+      id: PropType.number,
+      flavors: PropType.number,
     }),
   }).isRequired,
 };

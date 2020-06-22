@@ -6,11 +6,7 @@ import App from 'App';
 import AuthProvider from 'contexts/Auth';
 import { CssBaseline, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
-const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-});
+const theme = createMuiTheme({});
 
 function Root() {
   return (

@@ -16,6 +16,8 @@ function Auth({ children }) {
    */
   const login = useCallback(() => {
     const provider = new firebase.auth.GithubAuthProvider();
+    provider.addScope('read:user');
+
     firebase.auth().signInWithRedirect(provider);
   }, []);
 
