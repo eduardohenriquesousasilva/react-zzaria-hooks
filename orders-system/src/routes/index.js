@@ -1,3 +1,3 @@
 export const HOME = '/';
 export const LOGIN = '/login';
-export const CHOOSE_PIZZA_FLAVOURS = '/sabores-da-pizza';
+export const CHOOSE_PIZZA_FLAVORS = '/sabores-da-pizza';

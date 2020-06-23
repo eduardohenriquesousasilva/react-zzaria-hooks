@@ -8,7 +8,7 @@ import PizzasGrid from 'components/PizzasGrid';
 import { AuthContext } from 'contexts/Auth';
 import pizzaSizes from 'faker-data/pizzas-sizes';
 import singularOrPlural from 'helpers/formatter';
-import { CHOOSE_PIZZA_FLAVOURS } from 'routes/index';
+import { CHOOSE_PIZZA_FLAVORS } from 'routes/index';
 import { Card, Grid, Typography } from '@material-ui/core';
 
 const ChoosePizzaSize = () => {
@@ -31,7 +31,7 @@ const ChoosePizzaSize = () => {
           <Grid item key={pizza.id} xs>
             <Card>
               <CardLink to={{
-                pathname: CHOOSE_PIZZA_FLAVOURS,
+                pathname: CHOOSE_PIZZA_FLAVORS,
                 state: pizza,
               }}
               >
@@ -44,8 +44,8 @@ const ChoosePizzaSize = () => {
                 <Typography variant="h5">{pizza.name}</Typography>
                 <Typography>
                   {pizza.slices} fatias, {' '}
-                  {pizza.flavours} {' '}
-                  {singularOrPlural(pizza.flavours, 'sabor', 'sabores')}
+                  {pizza.flavors} {' '}
+                  {singularOrPlural(pizza.flavors, 'sabor', 'sabores')}
                 </Typography>
               </CardLink>
             </Card>
