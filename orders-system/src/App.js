@@ -25,6 +25,10 @@ function App({ location }) {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((response) => {
+      if (response == null) {
+        return setDidCheckUserIn(true);
+      }
+
       const user = response.providerData[0];
 
       setUserInfo({
@@ -34,7 +38,7 @@ function App({ location }) {
           firstName: user.displayName.split(' ')[0],
         },
       });
-      setDidCheckUserIn(true);
+      return setDidCheckUserIn(true);
     });
   }, [setUserInfo]);
 

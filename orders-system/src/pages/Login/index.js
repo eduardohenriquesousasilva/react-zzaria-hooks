@@ -26,7 +26,7 @@ function Login() {
 }
 
 const Container = styled.div`
-  padding: 20px;
+  padding: ${({ theme }) => theme.spacing(3)}px;
 `;
 
 const Logo = styled(MainLogo)`
@@ -38,9 +38,9 @@ const GitHubButton = styled(Button).attrs({
   fullWidth: true,
 })`
   && {
-    font-size: 25px;
-    max-width: 480px;
-    padding: 15px;
+    font-size: ${({ theme }) => theme.typography.h5.fontSize};
+    max-width: 420px;
+    padding: ${({ theme }) => theme.spacing(2)}px;
     text-transform: none;
   }
 `;

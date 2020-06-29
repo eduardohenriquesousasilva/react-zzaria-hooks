@@ -85,7 +85,11 @@ const ChoosePizzaFlavors = ({ location }) => {
 
 const Card = styled(MaterialCard)`
   border: 1px solid transparent;
-  border-color: ${({ checked }) => (checked ? '#000' : '')};
+  border-color: ${({ theme, checked }) => (checked ? theme.palette.secondary.light : '')};
+
+  ${Divider} {
+    background-color: ${({ theme, checked }) => (checked ? theme.palette.secondary.light : '')};
+  }
 `;
 
 const Label = styled(CardLink).attrs({
