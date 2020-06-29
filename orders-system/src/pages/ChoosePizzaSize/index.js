@@ -7,8 +7,8 @@ import CardLink from 'components/CardLink';
 import PizzasGrid from 'components/PizzasGrid';
 import { AuthContext } from 'contexts/Auth';
 import pizzaSizes from 'faker-data/pizzas-sizes';
-import singularOrPlural from 'helpers/formatter';
-import { CHOOSE_PIZZA_FLAVOURS } from 'routes/index';
+import { singularOrPlural } from 'helpers/formatter';
+import { CHOOSE_PIZZA_FLAVORS } from 'routes/index';
 import { Card, Grid, Typography } from '@material-ui/core';
 
 const ChoosePizzaSize = () => {
@@ -31,7 +31,7 @@ const ChoosePizzaSize = () => {
           <Grid item key={pizza.id} xs>
             <Card>
               <CardLink to={{
-                pathname: CHOOSE_PIZZA_FLAVOURS,
+                pathname: CHOOSE_PIZZA_FLAVORS,
                 state: pizza,
               }}
               >
@@ -44,8 +44,8 @@ const ChoosePizzaSize = () => {
                 <Typography variant="h5">{pizza.name}</Typography>
                 <Typography>
                   {pizza.slices} fatias, {' '}
-                  {pizza.flavours} {' '}
-                  {singularOrPlural(pizza.flavours, 'sabor', 'sabores')}
+                  {pizza.flavors} {' '}
+                  {singularOrPlural(pizza.flavors, 'sabor', 'sabores')}
                 </Typography>
               </CardLink>
             </Card>
@@ -58,8 +58,8 @@ const ChoosePizzaSize = () => {
 
 const Pizza = styled.div`
   align-items: center;
-  background: #fff;
-  border: 1px solid #ccc;
+  background: ${({ theme }) => theme.palette.common.white};
+  border: 1px solid ${({ theme }) => theme.palette.grey.A100};
   border-radius: 50%;
   display: flex;
   height: 200px;
@@ -70,7 +70,7 @@ const Pizza = styled.div`
 
   &::before,
   &::after {
-    background: #ccc;
+    background: ${({ theme }) => theme.palette.grey.A100};
     content: '';
     position: absolute;
     transform: rotate(45deg);
@@ -91,7 +91,7 @@ const PizzaText = styled(Typography).attrs({
   variant: 'h5',
 })`
   align-items: center;
-  background: #fff;
+  background: ${({ theme }) => theme.palette.common.white};
   border-radius: 50%;
   display: flex;
   height: 80px;

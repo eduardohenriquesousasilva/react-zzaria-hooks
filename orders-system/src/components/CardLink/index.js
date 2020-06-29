@@ -11,7 +11,7 @@ const CardLink = styled(CardActionArea).attrs({
     display: flex;
     flex-direction: column;
     min-width: 250px;
-    padding: 10px 0;
+    padding: ${({ theme }) => theme.spacing(3)}px 0;
   }
 `;
 

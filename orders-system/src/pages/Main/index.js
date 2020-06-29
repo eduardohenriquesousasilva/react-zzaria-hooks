@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Header from 'components/Header';
 import { withStyles } from '@material-ui/core';
-import { HOME, CHOOSE_PIZZA_FLAVOURS } from 'routes/index';
+import { HOME, CHOOSE_PIZZA_FLAVORS } from 'routes/index';
 
 
 const ChoosePizzaSize = React.lazy(() => import('pages/ChoosePizzaSize'));
@@ -25,7 +25,7 @@ const Main = () => (
             component={ChoosePizzaSize}
           />
           <Route
-            path={CHOOSE_PIZZA_FLAVOURS}
+            path={CHOOSE_PIZZA_FLAVORS}
             component={ChoosePizzaFlavors}
           />
         </Switch>
@@ -35,7 +35,7 @@ const Main = () => (
 );
 
 const Content = styled.main`
-  padding: 20px;
+  padding: ${({ theme }) => theme.spacing(3)}px;
 `;
 
 const style = (theme) => ({
