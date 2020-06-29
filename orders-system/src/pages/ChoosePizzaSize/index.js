@@ -7,7 +7,7 @@ import CardLink from 'components/CardLink';
 import PizzasGrid from 'components/PizzasGrid';
 import { AuthContext } from 'contexts/Auth';
 import pizzaSizes from 'faker-data/pizzas-sizes';
-import singularOrPlural from 'helpers/formatter';
+import { singularOrPlural } from 'helpers/formatter';
 import { CHOOSE_PIZZA_FLAVORS } from 'routes/index';
 import { Card, Grid, Typography } from '@material-ui/core';
 

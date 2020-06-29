@@ -10,8 +10,8 @@ import CardLink from 'components/CardLink';
 import { HOME } from 'routes/index';
 import PizzasGrid from 'components/PizzasGrid';
 import HeaderContent from 'components/HeaderContent';
-import singularOrPlural from 'helpers/formatter';
 import pizzasFlavors from 'faker-data/pizzas-flavors';
+import { singularOrPlural, toMoney } from 'helpers/formatter';
 import { Card as MaterialCard, Grid, Typography } from '@material-ui/core';
 
 const ChoosePizzaFlavors = ({ location }) => {
@@ -72,7 +72,7 @@ const ChoosePizzaFlavors = ({ location }) => {
 
                 <Typography>{pizza.name}</Typography>
                 <Typography variant="h5">
-                  {pizza.value[id]}
+                  {toMoney(pizza.value[id])}
                 </Typography>
               </Label>
             </Card>
