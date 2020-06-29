@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
+import Content from 'components/Content';
 import Divider from 'components/Divider';
 import { H3, H4 } from 'components/Title';
 import CardLink from 'components/CardLink';
@@ -15,7 +16,7 @@ const ChoosePizzaSize = () => {
   const { userInfo } = useContext(AuthContext);
 
   return (
-    <>
+    <Content>
       <Grid container direction="column" alignItems="center">
         <H3>
           O que vai ser hoje, {userInfo.user.firstName}? =)
@@ -52,7 +53,8 @@ const ChoosePizzaSize = () => {
           </Grid>
         ))}
       </PizzasGrid>
-    </>
+
+    </Content>
   );
 };
 
