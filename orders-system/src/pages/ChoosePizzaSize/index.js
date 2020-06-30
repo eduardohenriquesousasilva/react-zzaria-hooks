@@ -1,19 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
+import useAuth from 'hooks/Auth';
 import Content from 'components/Content';
 import Divider from 'components/Divider';
 import { H3, H4 } from 'components/Title';
 import CardLink from 'components/CardLink';
 import PizzasGrid from 'components/PizzasGrid';
-import { AuthContext } from 'contexts/Auth';
 import pizzaSizes from 'faker-data/pizzas-sizes';
-import { singularOrPlural } from 'helpers/formatter';
 import { CHOOSE_PIZZA_FLAVORS } from 'routes/index';
+import { singularOrPlural } from 'helpers/formatter';
 import { Card, Grid, Typography } from '@material-ui/core';
 
 const ChoosePizzaSize = () => {
-  const { userInfo } = useContext(AuthContext);
+  const { userInfo } = useAuth();
 
   return (
     <Content>
