@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
@@ -9,13 +10,14 @@ import {
   Toolbar as MaterialToolbar,
   Typography,
 } from '@material-ui/core';
-import { AuthContext } from 'contexts/Auth';
+import useAuth from 'hooks/Auth';
+import { HOME } from 'routes/index';
 import { AccountCircle } from '@material-ui/icons';
 import { ReactComponent as MainLogo } from 'assets/images/logo.svg';
 
 const Header = () => {
+  const { userInfo, logout } = useAuth();
   const [anchorElement, setAnchorElement] = useState(null);
-  const { userInfo, logout } = useContext(AuthContext);
 
   const handleOpenMenu = (e) => {
     setAnchorElement(e.target);
@@ -29,7 +31,9 @@ const Header = () => {
     <AppBar>
       <Toolbar>
         <LogoContainer>
-          <Logo />
+          <LinkLogo to={HOME}>
+            <Logo />
+          </LinkLogo>
         </LogoContainer>
 
         <Typography color="inherit">
@@ -73,6 +77,10 @@ const Logo = styled(MainLogo)`
   & line {
     stroke: ${({ theme }) => theme.palette.common.white};
   }
+`;
+
+const LinkLogo = styled(Link)`
+  display: inline-block;
 `;
 
 export default Header;

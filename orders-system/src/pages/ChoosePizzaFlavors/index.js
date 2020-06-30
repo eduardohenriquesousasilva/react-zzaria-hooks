@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropType from 'prop-types';
 
 import styled from 'styled-components';
@@ -11,20 +11,20 @@ import {
   Card as MaterialCard,
   Button as MaterialButton,
 } from '@material-ui/core';
-import { HOME, CHOOSE_PIZZA_QUANTITY } from 'routes/index';
+import useAuth from 'hooks/Auth';
 import { H4 } from 'components/Title';
 import Content from 'components/Content';
 import Divider from 'components/Divider';
 import CardLink from 'components/CardLink';
-import { AuthContext } from 'contexts/Auth';
 import PizzasGrid from 'components/PizzasGrid';
 import HeaderContent from 'components/HeaderContent';
 import pizzasFlavors from 'faker-data/pizzas-flavors';
+import { HOME, CHOOSE_PIZZA_QUANTITY } from 'routes/index';
 import { singularOrPlural, toMoney } from 'helpers/formatter';
 
 const ChoosePizzaFlavors = ({ location }) => {
   const [checkboxes, setCheckboxes] = useState(() => ({}));
-  const { userInfo } = useContext(AuthContext);
+  const { userInfo } = useAuth();
 
   const {
     flavors,

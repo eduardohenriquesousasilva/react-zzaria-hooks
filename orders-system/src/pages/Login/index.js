@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import { AuthContext } from 'contexts/Auth';
+import useAuth from 'hooks/Auth';
 import { Button, Grid } from '@material-ui/core';
 import { ReactComponent as MainLogo } from 'assets/images/logo.svg';
 
 function Login() {
-  const { login } = useContext(AuthContext);
+  const { login } = useAuth();
 
   return (
     <Container>
