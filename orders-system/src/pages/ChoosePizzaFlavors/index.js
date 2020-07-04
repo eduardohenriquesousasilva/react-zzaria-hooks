@@ -2,52 +2,30 @@ import React, { useState } from 'react';
 import PropType from 'prop-types';
 
 import styled from 'styled-components';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-import {
-  Grid,
-  Container,
-  Typography,
-  Card as MaterialCard,
-  Button as MaterialButton,
-} from '@material-ui/core';
-import useAuth from 'hooks/Auth';
+import { HOME, CHOOSE_PIZZA_QUANTITY } from 'routes/index';
 import { H4 } from 'components/Title';
+import Footer from 'components/Footer';
 import Content from 'components/Content';
 import Divider from 'components/Divider';
 import CardLink from 'components/CardLink';
 import PizzasGrid from 'components/PizzasGrid';
 import HeaderContent from 'components/HeaderContent';
 import pizzasFlavors from 'faker-data/pizzas-flavors';
-import { HOME, CHOOSE_PIZZA_QUANTITY } from 'routes/index';
 import { singularOrPlural, toMoney } from 'helpers/formatter';
+import { Grid, Typography, Card as MaterialCard } from '@material-ui/core';
 
 const ChoosePizzaFlavors = ({ location }) => {
   const [checkboxes, setCheckboxes] = useState(() => ({}));
-  const { userInfo } = useAuth();
 
-  const {
-    flavors,
-    id,
-    name,
-    slices,
-  } = location.state;
-
-  const validateLimitFlavors = (currentChecked) => {
-    const flavorsCheckeds = Object
-      .values(checkboxes)
-      .filter((checkbox) => !!checkbox)
-      .length;
-
-    if (flavorsCheckeds === flavors && currentChecked) {
-      return false;
-    }
-
-    return true;
-  };
+  const { flavors, id } = location.state.pizzaSize;
 
   const handleChangeCheckbox = (idPizza) => (event) => {
-    if (!validateLimitFlavors(event.target.checked)) {
+    if (
+      checkboxesChecked(checkboxes).length === flavors
+      && event.target.checked === true
+    ) {
       return;
     }
 
@@ -95,33 +73,41 @@ const ChoosePizzaFlavors = ({ location }) => {
           ))}
         </PizzasGrid>
       </Content>
-      <Footer>
-        <Container maxWidth="lg">
-          <Grid container>
-            <OrderContainer>
-              <Typography>
-                <strong>
-                  {userInfo.user.firstName} seu pedido é:
-                </strong>
-              </Typography>
-              <Typography>
-                Pizza <strong>{name.toUpperCase()}</strong> - {' '}
-                (
-                {slices} {singularOrPlural(flavors, 'fatia', 'fatias')}, {' '}
-                {flavors} {singularOrPlural(flavors, 'sabor', 'sabores')}
-                )
-              </Typography>
-            </OrderContainer>
-            <Grid item>
-              <Button to={HOME}>Mudar tamanho</Button>
-              <Button to={CHOOSE_PIZZA_QUANTITY} color="primary">Quantas pizzas</Button>
-            </Grid>
-          </Grid>
-        </Container>
-      </Footer>
+      <Footer
+        buttons={[
+          {
+            to: HOME,
+            children: 'Mudar tamanho',
+          },
+          {
+            to: {
+              pathname: CHOOSE_PIZZA_QUANTITY,
+              state: {
+                ...location.state,
+                pizzaFlavors: getFlavorsIdAndName(checkboxes),
+              },
+            },
+            color: 'primary',
+            children: 'Quantas pizzas',
+          },
+        ]}
+      />
     </>
   );
 };
+
+function checkboxesChecked(checkboxes) {
+  return Object.values(checkboxes).filter(Boolean);
+}
+
+function getFlavorsIdAndName(checkboxes) {
+  return Object.entries(checkboxes)
+    .filter(([, value]) => !!value)
+    .map(([id]) => ({
+      id,
+      name: pizzasFlavors.find((flavor) => flavor.id === parseInt(id, 10)).name,
+    }));
+}
 
 const Card = styled(MaterialCard)`
   border: 1px solid transparent;
@@ -146,32 +132,11 @@ const Img = styled.img`
   width: 200px;
 `;
 
-const Footer = styled.footer`
-  box-shadow: 0 0 3px ${({ theme }) => theme.palette.grey.A300};
-  padding: ${({ theme }) => theme.spacing(3)}px;
-  width: 100%;
-`;
-
-const OrderContainer = styled(Grid).attrs({
-  item: true,
-})`
-  flex-grow: 1;
-`;
-
-const Button = styled(MaterialButton).attrs({
-  variant: 'contained',
-  component: Link,
-})`
-  margin-left: ${({ theme }) => theme.spacing(2)}px;
-`;
-
 ChoosePizzaFlavors.propTypes = {
   location: PropType.shape({
     state: PropType.shape({
       id: PropType.number,
       flavors: PropType.number,
-      name: PropType.string,
-      slices: PropType.number,
     }),
   }).isRequired,
 };

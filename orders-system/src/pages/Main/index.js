@@ -1,13 +1,13 @@
 import React, { Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import * as routes from 'routes/index';
 import Header from 'components/Header';
 import { withStyles } from '@material-ui/core';
-import { HOME, CHOOSE_PIZZA_FLAVORS } from 'routes/index';
-
 
 const ChoosePizzaSize = React.lazy(() => import('pages/ChoosePizzaSize'));
 const ChoosePizzaFlavors = React.lazy(() => import('pages/ChoosePizzaFlavors'));
+const ChoosePizzaQuantity = React.lazy(() => import('pages/ChoosePizzaQuantity'));
 
 const Main = () => (
   <>
@@ -18,13 +18,17 @@ const Main = () => (
     <Suspense fallback="Loading...">
       <Switch>
         <Route
-          path={HOME}
+          path={routes.HOME}
           exact
           component={ChoosePizzaSize}
         />
         <Route
-          path={CHOOSE_PIZZA_FLAVORS}
+          path={routes.CHOOSE_PIZZA_FLAVORS}
           component={ChoosePizzaFlavors}
+        />
+        <Route
+          path={routes.CHOOSE_PIZZA_QUANTITY}
+          component={ChoosePizzaQuantity}
         />
       </Switch>
     </Suspense>
